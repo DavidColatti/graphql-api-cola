@@ -1,7 +1,5 @@
-const { ApolloServer } = require("apollo-server-express");
-const express = require("express");
+const { ApolloServer } = require("apollo-server");
 const mongoose = require("mongoose");
-const cors = require("cors");
 const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
 
@@ -31,22 +29,8 @@ const startServer = async () => {
     },
   });
 
-  const app = express();
-  server.applyMiddleware({ app });
-
-  app.use(
-    cors({
-      credentials: true,
-      origin: [
-        "http://localhost:3000",
-        "https://graphql-api-colatti.herokuapp.com",
-      ], //Swap this with the client url
-    })
-  );
-
-  app.listen({ port: process.env.PORT || 4000 }, () =>
-    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-  );
+  const { url } = await server.listen({ port: process.env.PORT || 4000 });
+  console.log(`🚀 Server ready at ${url}`);
 };
 
 startServer();
