@@ -24,6 +24,8 @@ const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    playground: true,
+    introspection: true,
     engine: {
       reportSchema: true,
     },
