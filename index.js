@@ -37,7 +37,10 @@ const startServer = async () => {
   app.use(
     cors({
       credentials: true,
-      origin: ["http://localhost:3000", "https://leadminerapp.herokuapp.com"], //Swap this with the client url
+      origin: [
+        "http://localhost:3000",
+        "https://graphql-api-colatti.herokuapp.com",
+      ], //Swap this with the client url
     })
   );
 
